@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Arthurmtro/Opaline/main/schema/theme.schema.json",
+  "format": "opaline-theme",
+  "version": 1,
+  "id": "catppuccin-mocha",
+  "name": "Catppuccin Mocha",
+  "author": "Catppuccin (catppuccin.com, MIT)",
+  "appearance": "dark",
+  "palette": {
+    "base": "#1E1E2E",
+    "text": "#CDD6F4",
+    "accent": "#CBA6F7",
+    "deep": "#11111B",
+    "surface": "#181825",
+    "elevated": "#313244",
+    "hover": "#45475A",
+    "highlight": "#313244",
+    "selection": "#45475A",
+    "border": "#313244",
+    "borderSubtle": "#262637",
+    "accentSoft": "#B4BEFE",
+    "accentDeep": "#8E6FC9",
+    "accentDim": "#5B4A7A",
+    "textMuted": "#A6ADC8",
+    "textSubtle": "#7F849C",
+    "textFaint": "#585B70",
+    "success": "#A6E3A1",
+    "warning": "#F9E2AF",
+    "error": "#F38BA8",
+    "info": "#89DCEB"
+  },
+  "terminal": {
+    "ansi": [
+      "#45475A",
+      "#F38BA8",
+      "#A6E3A1",
+      "#F9E2AF",
+      "#89B4FA",
+      "#F5C2E7",
+      "#94E2D5",
+      "#BAC2DE",
+      "#585B70",
+      "#F38BA8",
+      "#A6E3A1",
+      "#F9E2AF",
+      "#89B4FA",
+      "#F5C2E7",
+      "#94E2D5",
+      "#A6ADC8"
+    ]
+  },
+  "syntax": {
+    "keyword": "#CBA6F7",
+    "function": "#89B4FA",
+    "type": "#F9E2AF",
+    "string": "#A6E3A1",
+    "number": "#FAB387",
+    "comment": "#9399B2",
+    "property": "#B4BEFE",
+    "variable": "#CDD6F4",
+    "special": "#F5C2E7",
+    "operator": "#89DCEB",
+    "punctuation": "#9399B2"
+  },
+  "backdrop": {
+    "glow": "#CBA6F7",
+    "glowStrength": 0.18,
+    "grain": 2.5,
+    "webHue": 267
+  },
+  "browser": {
+    "colors": [
+      "#1E1E2E",
+      "#3B2F55"
+    ],
+    "opacity": 0.8,
+    "texture": 0.125
+  },
+  "wallpaper": {
+    "holo": [
+      "#CBA6F7",
+      "#F5C2E7",
+      "#FAB387",
+      "#F9E2AF",
+      "#A6E3A1",
+      "#89DCEB"
+    ],
+    "tagline": [
+      "SOOTHING",
+      "PASTEL",
+      "THEME"
+    ],
+    "ringText": "CATPPUCCIN, MOCHA",
+    "cornerTopLeft": "CATPPUCCIN",
+    "cornerBottomLeft": "FOR THE COZY",
+    "cornerBottomRight": "MOCHA"
+  }
+}

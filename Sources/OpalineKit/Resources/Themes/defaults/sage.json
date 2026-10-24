@@ -1,0 +1,90 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Arthurmtro/Opaline/main/schema/theme.schema.json",
+  "format": "opaline-theme",
+  "version": 1,
+  "id": "sage",
+  "name": "Sage",
+  "author": "Opaline",
+  "appearance": "dark",
+  "palette": {
+    "base": "#1A201C",
+    "text": "#F3EFE7",
+    "accent": "#88CF94",
+    "deep": "#141915",
+    "surface": "#171D19",
+    "elevated": "#222A25",
+    "hover": "#29332C",
+    "highlight": "#2B3B30",
+    "selection": "#2F4A36",
+    "border": "#2C3530",
+    "borderSubtle": "#232B26",
+    "accentSoft": "#A9D4B0",
+    "accentDeep": "#4F8A5C",
+    "accentDim": "#3A5A42",
+    "textMuted": "#8F9B94",
+    "textSubtle": "#5E6862",
+    "textFaint": "#4A5550",
+    "success": "#88CF94",
+    "warning": "#E3C07D",
+    "error": "#E07A72",
+    "info": "#7CC6BE"
+  },
+  "terminal": {
+    "ansi": [
+      "#29312C",
+      "#E07A72",
+      "#88CF94",
+      "#E3C07D",
+      "#7FA8D9",
+      "#C49ADB",
+      "#7CC6BE",
+      "#D9D5CC",
+      "#7D8782",
+      "#F0958D",
+      "#A9D4B0",
+      "#EED29E",
+      "#9DBDE6",
+      "#D4B2E6",
+      "#9AD6CF",
+      "#F3EFE7"
+    ]
+  },
+  "syntax": {
+    "keyword": "#88CF94",
+    "function": "#7CC6BE",
+    "type": "#E3C07D",
+    "string": "#C3D69B",
+    "number": "#F0958D",
+    "comment": "#6E7A73",
+    "property": "#D9D5CC",
+    "variable": "#F3EFE7",
+    "special": "#C49ADB",
+    "operator": "#A9D4B0",
+    "punctuation": "#8F9B94"
+  },
+  "backdrop": {
+    "glow": "#88CF94",
+    "glowStrength": 0.22,
+    "grain": 2.5,
+    "webHue": 135
+  },
+  "browser": {
+    "colors": [
+      "#1A201C",
+      "#3A6145"
+    ],
+    "opacity": 0.8,
+    "texture": 0.125
+  },
+  "wallpaper": {
+    "tagline": [
+      "CALM",
+      "FOCUS",
+      "SHIP"
+    ],
+    "ringText": "SAGE",
+    "cornerTopLeft": "SAGE",
+    "cornerBottomLeft": "SOFT GREEN BLACK",
+    "cornerBottomRight": "OPALINE"
+  }
+}

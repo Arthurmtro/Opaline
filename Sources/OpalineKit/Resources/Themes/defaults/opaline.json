@@ -1,0 +1,174 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Arthurmtro/Opaline/main/schema/theme.schema.json",
+  "format": "opaline-theme",
+  "version": 1,
+  "id": "opaline",
+  "name": "Opaline",
+  "author": "Opaline",
+  "appearance": "dark",
+  "palette": {
+    "base": "#15131C",
+    "text": "#ECE8F4",
+    "accent": "#B9A3F0",
+    "deep": "#100E16",
+    "surface": "#13111A",
+    "elevated": "#1E1B28",
+    "hover": "#262233",
+    "highlight": "#2A2440",
+    "selection": "#3A3058",
+    "border": "#2A2638",
+    "borderSubtle": "#211E2C",
+    "accentSoft": "#D5C8FF",
+    "accentDeep": "#7D66C8",
+    "accentDim": "#4F4380",
+    "textMuted": "#A39DB5",
+    "textSubtle": "#6F6982",
+    "textFaint": "#524D62",
+    "success": "#8EDBA8",
+    "warning": "#F2C46D",
+    "error": "#F28B9B",
+    "info": "#7CC6E8"
+  },
+  "terminal": {
+    "ansi": [
+      "#2A2638",
+      "#F28B9B",
+      "#8EDBA8",
+      "#F2C46D",
+      "#7CA8F0",
+      "#C9A3F0",
+      "#7CC6E8",
+      "#DCD7E6",
+      "#6F6982",
+      "#F7A9B5",
+      "#A9E8BE",
+      "#F7D592",
+      "#A0C0F7",
+      "#DAC0F7",
+      "#A2D9F0",
+      "#F6F3FA"
+    ]
+  },
+  "syntax": {
+    "keyword": "#C9A3F0",
+    "function": "#7CC6E8",
+    "type": "#F2C46D",
+    "string": "#8EDBA8",
+    "number": "#F29BB0",
+    "comment": "#6F6982",
+    "property": "#D7D1E4",
+    "variable": "#ECE8F4",
+    "special": "#C9E66B",
+    "operator": "#B9A3F0",
+    "punctuation": "#A39DB5"
+  },
+  "backdrop": {
+    "glow": "#B9A3F0",
+    "glowStrength": 0.22,
+    "grain": 2.5,
+    "webHue": 262
+  },
+  "browser": {
+    "colors": [
+      "#15131C",
+      "#34295A"
+    ],
+    "opacity": 0.8,
+    "texture": 0.125
+  },
+  "wallpaper": {
+    "holo": [
+      "#88CF94",
+      "#C9E66B",
+      "#F2C46D",
+      "#F29BB0",
+      "#B9A3F0",
+      "#7CC6E8"
+    ],
+    "tagline": [
+      "DESIGN",
+      "APPLY",
+      "EVERYWHERE"
+    ],
+    "ringText": "OPALINE",
+    "cornerTopLeft": "OPALINE",
+    "cornerBottomLeft": "THEMES FOR YOUR MAC",
+    "cornerBottomRight": "OPEN SOURCE",
+    "monogram": "monogram.svg"
+  },
+  "assets": {
+    "monogram.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\"><path fill-rule=\"evenodd\" d=\"M24 0a24 24 0 1 1 0 48a24 24 0 1 1 0-48zm0 3a21 21 0 1 0 0 42a21 21 0 1 0 0-42z\"/><path d=\"M24 11l10 7l-4 15h-12l-4-15z\"/></svg>"
+  },
+  "alternate": {
+    "palette": {
+      "base": "#F7F5FB",
+      "text": "#221E2E",
+      "accent": "#6E56CF",
+      "deep": "#EEEAF5",
+      "surface": "#F2EFF8",
+      "elevated": "#FFFFFF",
+      "hover": "#E9E4F2",
+      "highlight": "#EDE7FB",
+      "selection": "#DDD3F7",
+      "border": "#DDD8E8",
+      "borderSubtle": "#E7E3EF",
+      "accentSoft": "#8B76DB",
+      "accentDeep": "#5541B0",
+      "accentDim": "#B7A9EA",
+      "textMuted": "#5B5670",
+      "textSubtle": "#8A859B",
+      "textFaint": "#ADA9BA",
+      "success": "#2E7D4F",
+      "warning": "#9A6200",
+      "error": "#C2416B",
+      "info": "#1F7AA8"
+    },
+    "terminal": {
+      "ansi": [
+        "#221E2E",
+        "#C2416B",
+        "#2E7D4F",
+        "#9A6200",
+        "#3B5BCC",
+        "#7B4FD0",
+        "#1F7AA8",
+        "#8A859B",
+        "#5B5670",
+        "#A3305A",
+        "#226340",
+        "#7D4E00",
+        "#2E48A8",
+        "#6339B3",
+        "#17618A",
+        "#ADA9BA"
+      ]
+    },
+    "syntax": {
+      "keyword": "#7B4FD0",
+      "function": "#1F7AA8",
+      "type": "#9A6200",
+      "string": "#2E7D4F",
+      "number": "#C2416B",
+      "comment": "#8A859B",
+      "property": "#2E2A3A",
+      "variable": "#221E2E",
+      "special": "#B0447A",
+      "operator": "#6E56CF",
+      "punctuation": "#5B5670"
+    },
+    "backdrop": {
+      "glow": "#B9A3F0",
+      "glowStrength": 0.14,
+      "grain": 1.5,
+      "webHue": 262
+    },
+    "browser": {
+      "colors": [
+        "#F7F5FB",
+        "#E4DCF7"
+      ],
+      "opacity": 0.8,
+      "texture": 0.125
+    }
+  }
+}

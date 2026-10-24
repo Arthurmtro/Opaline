@@ -1,0 +1,538 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/Arthurmtro/Opaline/main/schema/theme.schema.json",
+  "title": "Opaline theme",
+  "description": "One Opaline theme: color roles that Opaline turns into the config of each app. Only name and palette.base/text/accent are required; every other value is derived when missing. See docs/THEME_FORMAT.md.",
+  "type": "object",
+  "required": [
+    "name",
+    "palette"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": "opaline-theme",
+      "description": "File format marker, written on export."
+    },
+    "version": {
+      "const": 1,
+      "description": "Format version."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Identifier and file name. Defaults to a slug of name."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name."
+    },
+    "author": {
+      "type": "string",
+      "description": "Shown under the name."
+    },
+    "appearance": {
+      "enum": [
+        "dark",
+        "light"
+      ],
+      "default": "dark",
+      "description": "Dark or light. Drives derived defaults and app schemes."
+    },
+    "palette": {
+      "type": "object",
+      "required": [
+        "base",
+        "text",
+        "accent"
+      ],
+      "properties": {
+        "base": {
+          "$ref": "#/$defs/color",
+          "description": "Main content background: editor, terminal, web pages. Required."
+        },
+        "text": {
+          "$ref": "#/$defs/color",
+          "description": "Default text color. Required."
+        },
+        "accent": {
+          "$ref": "#/$defs/color",
+          "description": "Brand color: cursor, focused borders, links, keywords, buttons. Required."
+        },
+        "deep": {
+          "$ref": "#/$defs/color",
+          "description": "Window chrome: title bars, tab bars, status bar, wallpaper background."
+        },
+        "surface": {
+          "$ref": "#/$defs/color",
+          "description": "Side panels such as file trees and sidebars."
+        },
+        "elevated": {
+          "$ref": "#/$defs/color",
+          "description": "Popovers, cards, inputs, menus."
+        },
+        "hover": {
+          "$ref": "#/$defs/color",
+          "description": "Hovered rows and buttons."
+        },
+        "highlight": {
+          "$ref": "#/$defs/color",
+          "description": "Raised highlights: your own messages in Claude Code, active rows."
+        },
+        "selection": {
+          "$ref": "#/$defs/color",
+          "description": "Selected text and selected list items. Text must stay readable on it."
+        },
+        "border": {
+          "$ref": "#/$defs/color",
+          "description": "Visible borders and dividers."
+        },
+        "borderSubtle": {
+          "$ref": "#/$defs/color",
+          "description": "Faint separators and indent guides."
+        },
+        "accentSoft": {
+          "$ref": "#/$defs/color",
+          "description": "Lighter accent for secondary highlights and suggestions."
+        },
+        "accentDeep": {
+          "$ref": "#/$defs/color",
+          "description": "Darker accent: primary button fill, focused input border."
+        },
+        "accentDim": {
+          "$ref": "#/$defs/color",
+          "description": "Very muted accent: inactive focus, guides."
+        },
+        "textMuted": {
+          "$ref": "#/$defs/color",
+          "description": "Secondary text. At least 4.5:1 contrast on base."
+        },
+        "textSubtle": {
+          "$ref": "#/$defs/color",
+          "description": "Placeholders and hints."
+        },
+        "textFaint": {
+          "$ref": "#/$defs/color",
+          "description": "Disabled text and line numbers."
+        },
+        "success": {
+          "$ref": "#/$defs/color",
+          "description": "Additions and passing checks (green family)."
+        },
+        "warning": {
+          "$ref": "#/$defs/color",
+          "description": "Warnings and modified files (yellow or orange family)."
+        },
+        "error": {
+          "$ref": "#/$defs/color",
+          "description": "Errors and deletions (red family)."
+        },
+        "info": {
+          "$ref": "#/$defs/color",
+          "description": "Informational badges and renamed files."
+        }
+      },
+      "description": "Interface color roles, from background to foreground."
+    },
+    "terminal": {
+      "type": "object",
+      "properties": {
+        "ansi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/color"
+          },
+          "minItems": 16,
+          "maxItems": 16,
+          "description": "16 ANSI colors: black, red, green, yellow, blue, magenta, cyan, white, then the bright variants in the same order."
+        }
+      }
+    },
+    "syntax": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "$ref": "#/$defs/color",
+          "description": "Keywords (if, return, func) and tags."
+        },
+        "function": {
+          "$ref": "#/$defs/color",
+          "description": "Function and method names, links."
+        },
+        "type": {
+          "$ref": "#/$defs/color",
+          "description": "Types, classes, attributes."
+        },
+        "string": {
+          "$ref": "#/$defs/color",
+          "description": "String literals."
+        },
+        "number": {
+          "$ref": "#/$defs/color",
+          "description": "Numbers, booleans, constants."
+        },
+        "comment": {
+          "$ref": "#/$defs/color",
+          "description": "Comments, rendered italic. The quietest role."
+        },
+        "property": {
+          "$ref": "#/$defs/color",
+          "description": "Object properties."
+        },
+        "variable": {
+          "$ref": "#/$defs/color",
+          "description": "Variables."
+        },
+        "special": {
+          "$ref": "#/$defs/color",
+          "description": "Labels, preprocessor, regex, special variables."
+        },
+        "operator": {
+          "$ref": "#/$defs/color",
+          "description": "Operators."
+        },
+        "punctuation": {
+          "$ref": "#/$defs/color",
+          "description": "Brackets and delimiters."
+        }
+      },
+      "description": "Code highlighting roles."
+    },
+    "backdrop": {
+      "type": "object",
+      "properties": {
+        "glow": {
+          "$ref": "#/$defs/color",
+          "description": "Glow rising from the bottom-right corner of the terminal and of web pages."
+        },
+        "glowStrength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Glow intensity at the corner. 0.1 to 0.25 reads well."
+        },
+        "grain": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 8,
+          "description": "Film grain strength in 8-bit levels. 0 disables it."
+        },
+        "webHue": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Hue that GitHub's blue-grey palette is rotated to."
+        }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/color"
+          },
+          "minItems": 1,
+          "maxItems": 3,
+          "description": "Browser workspace gradient, first color dominant."
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0.3,
+          "maximum": 0.8,
+          "description": "Gradient opacity. Higher is less transparent."
+        },
+        "texture": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Grain on the browser gradient."
+        }
+      }
+    },
+    "wallpaper": {
+      "type": "object",
+      "properties": {
+        "holo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/color"
+          },
+          "minItems": 2,
+          "description": "Iridescent stops for the logo ring, in order around the circle."
+        },
+        "tagline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Words shown under the title."
+        },
+        "ringText": {
+          "type": "string",
+          "description": "Text repeated around the logo."
+        },
+        "cornerTopLeft": {
+          "type": "string"
+        },
+        "cornerBottomLeft": {
+          "type": "string"
+        },
+        "cornerBottomRight": {
+          "type": "string"
+        },
+        "monogram": {
+          "type": "string",
+          "description": "Key in assets of an SVG drawn in the center. Missing: the theme initials."
+        },
+        "wordmark": {
+          "type": "string",
+          "description": "Key in assets of an SVG title. Missing: the theme name as text."
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^\\s*<svg"
+      },
+      "description": "Inline SVG files keyed by name. Used as masks: only shapes count."
+    },
+    "alternate": {
+      "$ref": "#/$defs/variant",
+      "description": "Optional colors for the opposite appearance (light for a dark theme). Same sections as the root; only palette.base/text/accent are required. Apps that follow the Mac's light/dark switch get both."
+    }
+  },
+  "$defs": {
+    "color": {
+      "type": "string",
+      "pattern": "^#([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$",
+      "description": "Hex color: #RGB, #RGBA, #RRGGBB or #RRGGBBAA."
+    },
+    "variant": {
+      "type": "object",
+      "required": [
+        "palette"
+      ],
+      "properties": {
+        "palette": {
+          "type": "object",
+          "required": [
+            "base",
+            "text",
+            "accent"
+          ],
+          "properties": {
+            "base": {
+              "$ref": "#/$defs/color",
+              "description": "Main content background: editor, terminal, web pages. Required."
+            },
+            "text": {
+              "$ref": "#/$defs/color",
+              "description": "Default text color. Required."
+            },
+            "accent": {
+              "$ref": "#/$defs/color",
+              "description": "Brand color: cursor, focused borders, links, keywords, buttons. Required."
+            },
+            "deep": {
+              "$ref": "#/$defs/color",
+              "description": "Window chrome: title bars, tab bars, status bar, wallpaper background."
+            },
+            "surface": {
+              "$ref": "#/$defs/color",
+              "description": "Side panels such as file trees and sidebars."
+            },
+            "elevated": {
+              "$ref": "#/$defs/color",
+              "description": "Popovers, cards, inputs, menus."
+            },
+            "hover": {
+              "$ref": "#/$defs/color",
+              "description": "Hovered rows and buttons."
+            },
+            "highlight": {
+              "$ref": "#/$defs/color",
+              "description": "Raised highlights: your own messages in Claude Code, active rows."
+            },
+            "selection": {
+              "$ref": "#/$defs/color",
+              "description": "Selected text and selected list items. Text must stay readable on it."
+            },
+            "border": {
+              "$ref": "#/$defs/color",
+              "description": "Visible borders and dividers."
+            },
+            "borderSubtle": {
+              "$ref": "#/$defs/color",
+              "description": "Faint separators and indent guides."
+            },
+            "accentSoft": {
+              "$ref": "#/$defs/color",
+              "description": "Lighter accent for secondary highlights and suggestions."
+            },
+            "accentDeep": {
+              "$ref": "#/$defs/color",
+              "description": "Darker accent: primary button fill, focused input border."
+            },
+            "accentDim": {
+              "$ref": "#/$defs/color",
+              "description": "Very muted accent: inactive focus, guides."
+            },
+            "textMuted": {
+              "$ref": "#/$defs/color",
+              "description": "Secondary text. At least 4.5:1 contrast on base."
+            },
+            "textSubtle": {
+              "$ref": "#/$defs/color",
+              "description": "Placeholders and hints."
+            },
+            "textFaint": {
+              "$ref": "#/$defs/color",
+              "description": "Disabled text and line numbers."
+            },
+            "success": {
+              "$ref": "#/$defs/color",
+              "description": "Additions and passing checks (green family)."
+            },
+            "warning": {
+              "$ref": "#/$defs/color",
+              "description": "Warnings and modified files (yellow or orange family)."
+            },
+            "error": {
+              "$ref": "#/$defs/color",
+              "description": "Errors and deletions (red family)."
+            },
+            "info": {
+              "$ref": "#/$defs/color",
+              "description": "Informational badges and renamed files."
+            }
+          },
+          "description": "Interface color roles, from background to foreground."
+        },
+        "terminal": {
+          "type": "object",
+          "properties": {
+            "ansi": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/color"
+              },
+              "minItems": 16,
+              "maxItems": 16,
+              "description": "16 ANSI colors: black, red, green, yellow, blue, magenta, cyan, white, then the bright variants in the same order."
+            }
+          }
+        },
+        "syntax": {
+          "type": "object",
+          "properties": {
+            "keyword": {
+              "$ref": "#/$defs/color",
+              "description": "Keywords (if, return, func) and tags."
+            },
+            "function": {
+              "$ref": "#/$defs/color",
+              "description": "Function and method names, links."
+            },
+            "type": {
+              "$ref": "#/$defs/color",
+              "description": "Types, classes, attributes."
+            },
+            "string": {
+              "$ref": "#/$defs/color",
+              "description": "String literals."
+            },
+            "number": {
+              "$ref": "#/$defs/color",
+              "description": "Numbers, booleans, constants."
+            },
+            "comment": {
+              "$ref": "#/$defs/color",
+              "description": "Comments, rendered italic. The quietest role."
+            },
+            "property": {
+              "$ref": "#/$defs/color",
+              "description": "Object properties."
+            },
+            "variable": {
+              "$ref": "#/$defs/color",
+              "description": "Variables."
+            },
+            "special": {
+              "$ref": "#/$defs/color",
+              "description": "Labels, preprocessor, regex, special variables."
+            },
+            "operator": {
+              "$ref": "#/$defs/color",
+              "description": "Operators."
+            },
+            "punctuation": {
+              "$ref": "#/$defs/color",
+              "description": "Brackets and delimiters."
+            }
+          },
+          "description": "Code highlighting roles."
+        },
+        "backdrop": {
+          "type": "object",
+          "properties": {
+            "glow": {
+              "$ref": "#/$defs/color",
+              "description": "Glow rising from the bottom-right corner of the terminal and of web pages."
+            },
+            "glowStrength": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Glow intensity at the corner. 0.1 to 0.25 reads well."
+            },
+            "grain": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 8,
+              "description": "Film grain strength in 8-bit levels. 0 disables it."
+            },
+            "webHue": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360,
+              "description": "Hue that GitHub's blue-grey palette is rotated to."
+            }
+          }
+        },
+        "browser": {
+          "type": "object",
+          "properties": {
+            "colors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/color"
+              },
+              "minItems": 1,
+              "maxItems": 3,
+              "description": "Browser workspace gradient, first color dominant."
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0.3,
+              "maximum": 0.8,
+              "description": "Gradient opacity. Higher is less transparent."
+            },
+            "texture": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Grain on the browser gradient."
+            }
+          }
+        }
+      }
+    }
+  }
+}

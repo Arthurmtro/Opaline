@@ -1,0 +1,106 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  :root {
+    --deep: {{deep}}; --text: {{text}}; --muted: {{textMuted}}; --accent: {{accent}};
+    --holo: conic-gradient(from 210deg at 50% 50%, {{holo}});
+    --u: 1vh;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; }
+  body {
+    position: relative;
+    font-family: 'Fira Code', Menlo, monospace;
+    background:
+      radial-gradient(70vh 70vh at 86% 102%, rgba({{glowRGB}}, 0.20), transparent 70%),
+      radial-gradient(60vh 50vh at 8% -10%, rgba({{accentSoftRGB}}, 0.07), transparent 70%),
+      radial-gradient(130% 150% at 50% 45%, {{baseLift}} 0%, var(--deep) 55%, {{deeper}} 100%);
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba({{textRGB}}, 0.075) 1px, transparent 1.5px);
+    background-size: calc(var(--u) * 2.4) calc(var(--u) * 2.4);
+    mask-image: radial-gradient(ellipse max(60vh, 34vw) 46vh at 50% 46%, black 0%, transparent 100%);
+  }
+  .aura {
+    position: absolute; left: 50%; top: 44%; width: calc(var(--u) * 62); aspect-ratio: 1;
+    transform: translate(-50%, -50%); border-radius: 50%;
+    background: var(--holo); filter: blur(calc(var(--u) * 9)); opacity: 0.16; mix-blend-mode: screen;
+  }
+  .orbit {
+    position: absolute; left: 50%; top: 44%; aspect-ratio: 1; border-radius: 50%;
+    transform: translate(-50%, -50%); border: 1px solid rgba({{accentSoftRGB}}, 0.10);
+  }
+  .ring { position: absolute; left: 50%; top: 44%; width: calc(var(--u) * 50); aspect-ratio: 1; transform: translate(-50%, -50%) rotate(-18deg); }
+  .ring text { font-size: 3.1px; fill: rgba({{accentSoftRGB}}, 0.55); font-weight: 500; }
+  .mark {
+    position: absolute; left: 50%; top: 44%; width: calc(var(--u) * 30); aspect-ratio: 1; transform: translate(-50%, -50%);
+    filter: drop-shadow(0 0 calc(var(--u) * 3.5) rgba({{accentRGB}}, 0.35));
+  }
+  .mark > div { position: absolute; inset: 0; }
+  .mark .holo, .mark .sheen { mask: {{monogramMask}}; }
+  .mark .holo { background: var(--holo); }
+  .mark .sheen {
+    background: linear-gradient(125deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.55) 46%, rgba(255,255,255,0) 58%),
+                linear-gradient(200deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
+    mix-blend-mode: soft-light;
+  }
+  .initials {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font: 600 calc(var(--u) * 11) / 1 -apple-system, 'SF Pro Display', sans-serif; letter-spacing: -0.02em;
+    background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .wordmark {
+    position: absolute; left: 50%; top: 74%; height: calc(var(--u) * 3.4); aspect-ratio: {{wordmarkRatio}};
+    transform: translateX(-50%); background: var(--text); mask: {{wordmarkMask}};
+  }
+  .title {
+    position: absolute; left: 50%; top: 73%; transform: translateX(-50%); white-space: nowrap; color: var(--text);
+    font: 500 calc(var(--u) * 3.6) / 1 -apple-system, 'SF Pro Display', sans-serif; letter-spacing: 0.32em;
+  }
+  .tagline {
+    position: absolute; left: 50%; top: 80.5%; transform: translateX(-50%); white-space: nowrap;
+    font-size: calc(var(--u) * 1.25); letter-spacing: 0.55em; color: var(--muted);
+  }
+  .tagline b { color: var(--accent); font-weight: 500; }
+  .corner {
+    position: absolute; font-size: calc(var(--u) * 0.95); letter-spacing: 0.35em; color: rgba({{textMutedRGB}}, 0.75);
+    display: flex; align-items: center; gap: calc(var(--u) * 1.2);
+  }
+  .corner::before { content: ''; width: calc(var(--u) * 3); height: 1px; background: rgba({{accentRGB}}, 0.5); }
+  .bl { left: 4vh; bottom: 4vh; }
+  .br { right: 4vh; bottom: 4vh; flex-direction: row-reverse; }
+  .tl { left: 4vh; top: 4vh; }
+  .grain { position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: overlay; }
+</style></head>
+<body>
+  <div class="grid"></div>
+  <div class="aura"></div>
+  <div class="orbit" style="width: calc(var(--u) * 42)"></div>
+  <div class="orbit" style="width: calc(var(--u) * 58); border-style: dashed; opacity: 0.6"></div>
+  <div class="orbit" style="width: calc(var(--u) * 78); opacity: 0.45"></div>
+  <svg class="ring" viewBox="0 0 100 100">
+    <defs><path id="circle" d="M50,50 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+    <text><textPath href="#circle"></textPath></text>
+  </svg>
+  {{mark}}
+  {{title}}
+  <div class="tagline">{{tagline}}</div>
+  {{corners}}
+  <svg class="grain" width="100%" height="100%">
+    <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#noise)"/>
+  </svg>
+  <script>
+    // Fill the circle exactly: measure one unit, pick the repeat count, spread the remainder as letter spacing.
+    {
+      const text = document.querySelector('.ring text'), path = text.querySelector('textPath');
+      const circumference = 2 * Math.PI * 46, unit = {{ringUnit}};
+      path.textContent = unit;
+      const unitLength = text.getComputedTextLength();
+      const count = Math.max(1, Math.floor(circumference / unitLength));
+      path.textContent = unit.repeat(count);
+      text.style.letterSpacing = `${(circumference - count * unitLength) / (count * unit.length)}px`;
+    }
+  </script>
+</body></html>
