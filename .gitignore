@@ -1,0 +1,9 @@
+.build/
+*.xcodeproj/
+.swiftpm/
+DerivedData/
+.DS_Store
+
+# Personal themes stay out of the history; only the README is tracked.
+Sources/OpalineKit/Resources/Themes/custom/*
+!Sources/OpalineKit/Resources/Themes/custom/README.md
