@@ -19,6 +19,15 @@ and can undo any apply from its History.
 - **Light and dark**: a theme can carry both versions; Zed, the terminal, cmux and the wallpaper follow the Mac's switch.
 - **Safe**: config files are edited in place (comments and unrelated settings kept), with a snapshot to restore.
 
+## Install
+
+```sh
+brew install --cask arthurmtro/tap/opaline
+```
+
+Or download the zip from [Releases](https://github.com/Arthurmtro/Opaline/releases). The app is signed and notarized,
+universal (Apple silicon and Intel), and needs macOS 15 or later.
+
 ## Apps it themes
 
 | App | What changes |
@@ -86,6 +95,9 @@ swift test       # engine tests (OpalineKit)
 ```
 
 The app is not sandboxed: it edits dotfiles in your home folder and closes apps that rewrite their files on quit.
+
+[![CI](https://github.com/Arthurmtro/Opaline/actions/workflows/ci.yml/badge.svg)](https://github.com/Arthurmtro/Opaline/actions/workflows/ci.yml)
+runs the tests and builds the app on every push and pull request.
 
 ## Where things live
 

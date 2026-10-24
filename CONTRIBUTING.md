@@ -38,4 +38,10 @@ swift test       # engine tests
 Scripts/run.sh   # build and launch the app
 ```
 
+## Release (maintainers)
+
+`OPALINE_TEAM_ID=<team id> Scripts/release.sh <version>` from a clean `main`: builds a universal app, signs it with the
+Developer ID of the Apple account signed in to Xcode, waits for notarization, publishes the GitHub release and updates
+the cask in [`homebrew-tap`](https://github.com/Arthurmtro/homebrew-tap).
+
 Code style: Swift 6, small focused types, no force unwraps outside static data, comments only for the why.
