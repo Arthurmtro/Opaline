@@ -1,0 +1,19 @@
+# Opaline
+
+> Native macOS app that applies one color theme to the terminal (Ghostty, cmux), Zed, Claude Code, the Zen browser,
+> GitHub in Zen and the wallpaper. A theme is one JSON file of color roles; only a name and three colors are required.
+
+## Making a theme
+
+- [Theme format](docs/THEME_FORMAT.md): every role, where it appears, derived defaults, design rules, a prompt template.
+- [JSON Schema](schema/theme.schema.json): machine-readable definition with a description per field.
+- [Example themes](themes/defaults): Opaline, Sage, Catppuccin Mocha, Paper.
+
+Output a single JSON object with "format": "opaline-theme" and "version": 1. An optional "alternate" object holds the
+opposite appearance (light version of a dark theme) with the same sections. Users paste it into Opaline with Shift-Cmd-V;
+prose or a ```json fence around it is accepted.
+
+## Code
+
+- [README](README.md): features, apps and files changed, build instructions.
+- [CONTRIBUTING](CONTRIBUTING.md): adding a theme or an app adapter.
