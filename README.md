@@ -16,7 +16,7 @@ and can undo any apply from its History.
 - **Edit visually**: every role has a color well, with a live preview of an editor, a terminal, a browser and the wallpaper.
 - **Share themes**: export a file, copy the JSON, import by drag and drop or paste. One file, logos included.
 - **Make themes with AI**: the format is documented for assistants; paste Claude's answer with **⇧⌘V** and it is installed.
-- **Light and dark**: a theme can carry both versions; Zed, the terminal, cmux and the wallpaper follow the Mac's switch.
+- **Light and dark**: a theme can carry both versions; Zed, the terminal, cmux, Cockpit and the wallpaper follow the Mac's switch.
 - **Safe**: config files are edited in place (comments and unrelated settings kept), with a snapshot to restore.
 
 ## Install
@@ -35,6 +35,7 @@ universal (Apple silicon and Intel), and needs macOS 15 or later.
 | Terminal (Ghostty, cmux) | `~/.config/ghostty/themes/<name>`, a glow backdrop image, a marked block in `~/.config/ghostty/config` |
 | cmux | accent, sidebar tint, selected workspace and focused pane in `~/.config/cmux/cmux.json` |
 | Claude Code | `~/.claude/themes/<id>.json` and `theme` in `~/.claude/settings.json` |
+| Cockpit | `cssVars.light` and `cssVars.dark` in `~/.cockpit/theme.json` (and `~/.cockpit-dev/theme.json` when it exists); Cockpit reloads it live |
 | Zed | `~/.config/zed/themes/<id>.json` and `theme` in `~/.config/zed/settings.json` |
 | Zen | workspace gradient (`zen-sessions.jsonlz4`), window scheme (`prefs.js`), the other variant in `chrome/userChrome.css`; Zen restarts for a moment |
 | GitHub in Zen | `chrome/userContent.css` of the Zen profile (dark themes) |
@@ -42,6 +43,37 @@ universal (Apple silicon and Intel), and needs macOS 15 or later.
 | Your apps | any file, rendered from a template with tokens like `{{palette.accent}}`, plus an optional reload command |
 
 Only apps installed on your Mac are offered; each one can be switched off in **Apps**.
+
+### Cockpit's tokens
+
+Each block takes one variant (`light` the light one, `dark` the dark one; a theme with one appearance fills both).
+Cockpit ships the Opaline theme through this table as its own default.
+
+| Cockpit token | Opaline role |
+|---|---|
+| `background` | `base` |
+| `card`, `popover`, `secondary` | `elevated` |
+| `surface`, `sidebar` | `surface` |
+| `muted` | `hover` |
+| `accent`, `sidebar-accent`, `wash` | `highlight` |
+| `border` | `border` |
+| `rule`, `sidebar-border` | `borderSubtle` |
+| `foreground`, `prose-text`, the `-foreground` of `card`, `popover`, `secondary`, `accent`, `sidebar-accent` | `text` |
+| `muted-foreground` | `textMuted`, legible |
+| `text-secondary`, `sidebar-foreground` | `muted-foreground` halfway to `text` |
+| `input` | `textSubtle`, legible at 3:1 |
+| `brand`, `ring` | `accent`, readable |
+| `brand-foreground` | `brand` 93 % of the way to black, or white, whichever contrasts more |
+| `primary`, `primary-foreground` | dark: `brand`, `brand-foreground`; light: `text`, `elevated` |
+| `prose-h1` to `prose-h4` | dark: `brand` 20, 45, 70, 88 % of the way to white; light: 0, 25, 50, 100 % of the way to `text` |
+| `prose-code-bg`, `prose-rule` | `brand` at 10 % (light: 8 %), at 35 % |
+| `success`, `warn`, `danger` and `destructive`, `info` | `success`, `warning`, `error`, `info`, readable |
+| `diff-added`, `diff-deleted` | `success`, `error`, as given |
+| `syntax-keyword`, `-function`, `-type`, `-string`, `-number`, `-comment`, `-property` | `syntax` of the same name |
+| `ansi-0` to `ansi-15` | `terminal.ansi` |
+
+- Legible: mixed towards `text` by steps of 2 % until 4.5:1 on `base`, `elevated` and `surface`.
+- Readable: the same, and 4.5:1 on its own 12 % pill over each, as Cockpit's WCAG AA check asks.
 
 ## Themes
 
