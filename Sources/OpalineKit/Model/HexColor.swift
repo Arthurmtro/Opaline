@@ -74,6 +74,27 @@ public struct HexColor: Hashable, Sendable, Codable, CustomStringConvertible {
         )
     }
 
+    /// WCAG relative luminance, alpha ignored.
+    public var luminance: Double {
+        func linear(_ channel: Double) -> Double {
+            channel <= 0.03928 ? channel / 12.92 : pow((channel + 0.055) / 1.055, 2.4)
+        }
+        return 0.2126 * linear(red) + 0.7152 * linear(green) + 0.0722 * linear(blue)
+    }
+
+    /// WCAG contrast ratio, from 1 to 21.
+    public func contrast(with other: HexColor) -> Double {
+        let (lighter, darker) = (max(luminance, other.luminance), min(luminance, other.luminance))
+        return (lighter + 0.05) / (darker + 0.05)
+    }
+
+    /// The closest color on the way to `target` that reaches `ratio` against every background.
+    public func legible(on backgrounds: [HexColor], ratio: Double, toward target: HexColor) -> HexColor {
+        stride(from: 0.0, through: 1, by: 0.02).lazy
+            .map { mixed(with: target, $0) }
+            .first { candidate in backgrounds.allSatisfy { candidate.contrast(with: $0) >= ratio } } ?? target
+    }
+
     public var hsl: (hue: Double, saturation: Double, lightness: Double) {
         let maxValue = max(red, green, blue), minValue = min(red, green, blue)
         let lightness = (maxValue + minValue) / 2

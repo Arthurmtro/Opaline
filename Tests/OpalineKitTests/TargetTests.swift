@@ -95,6 +95,59 @@ struct TargetTests {
         let png = BackdropRenderer.render(theme: try Fixtures.sage(), width: 64, height: 36)
         #expect(png.prefix(4) == Data([0x89, 0x50, 0x4E, 0x47]))
     }
+
+    /// Opaline applied to Cockpit gives the palette Cockpit ships as its default (`app/theme.json`).
+    @Test func cockpitTokensOfOpalineAreCockpitsDefault() throws {
+        let theme = try Fixtures.builtIn("opaline")
+        let dark = CockpitTarget.tokens(theme.variant(.dark))
+        let light = CockpitTarget.tokens(theme.variant(.light))
+        #expect(dark["background"] == "#15131C")
+        #expect(dark["card"] == "#1E1B28")
+        #expect(dark["brand"] == "#B9A3F0")
+        #expect(dark["primary-foreground"] == "#0D0B11")
+        #expect(dark["text-secondary"] == "#C8C3D5")
+        #expect(dark["prose-h2"] == "#D9CCF7")
+        #expect(dark["prose-code-bg"] == "rgba(185, 163, 240, 0.10)")
+        #expect(dark["syntax-keyword"] == "#C9A3F0")
+        #expect(dark["ansi-4"] == "#7CA8F0")
+        #expect(light["background"] == "#F7F5FB")
+        #expect(light["primary"] == "#221E2E")
+        #expect(light["brand"] == "#6650BF")
+        #expect(light["success"] == "#2C6E4A")
+        #expect(light["warn"] == "#895806")
+        #expect(light["danger"] == "#A53B60")
+        #expect(light["info"] == "#206890")
+        #expect(light["diff-added"] == "#2E7D4F")
+        #expect(light["prose-h2"] == "#55449B")
+        #expect(light["ansi-15"] == "#ADA9BA")
+        #expect(dark.count == 65 && light.count == 65)
+    }
+
+    @Test func cockpitFileSetsBothBlocksAndKeepsTheRest() throws {
+        let current = "{\n  \"cssVars\": {\n    \"theme\": { \"font-sans\": \"Inter\" },\n    \"dark\": { \"brand\": \"#FF0000\" }\n  }\n}\n"
+        let sage = try CockpitTarget.file(current, theme: try Fixtures.sage())
+        #expect(try JSONCEditor.value(at: ["cssVars", "theme", "font-sans"], in: sage) == "\"Inter\"")
+        #expect(try JSONCEditor.value(at: ["cssVars", "dark", "brand"], in: sage) == "\"#88CF94\"")
+        #expect(try JSONCEditor.value(at: ["cssVars", "light", "background"], in: sage) == "\"#1A201C\"", "a dark-only theme in both modes")
+        let opaline = try CockpitTarget.file("{}\n", theme: try Fixtures.builtIn("opaline"))
+        #expect(try JSONCEditor.value(at: ["cssVars", "light", "background"], in: opaline) == "\"#F7F5FB\"")
+        #expect(try JSONCEditor.value(at: ["cssVars", "dark", "background"], in: opaline) == "\"#15131C\"")
+        #expect(try JSONSerialization.jsonObject(with: Data(opaline.utf8)) is [String: Any])
+    }
+
+    @Test func cockpitWritesTheDevHomeOnlyWhenItExists() async throws {
+        let environment = try Fixtures.temporaryEnvironment()
+        let context = TargetContext(environment: environment)
+        let target = CockpitTarget()
+        #expect(!target.isInstalled(in: context))
+        #expect(target.files(in: context) == [environment.url("~/.cockpit/theme.json")])
+        try FileManager.default.createDirectory(at: environment.url("~/.cockpit-dev"), withIntermediateDirectories: true)
+        let changes = try await target.changes(for: try Fixtures.sage(), in: context)
+        #expect(changes.map(\.url) == [environment.url("~/.cockpit/theme.json"), environment.url("~/.cockpit-dev/theme.json")])
+        try FileManager.default.createDirectory(at: environment.url("~/.local/bin"), withIntermediateDirectories: true)
+        FileManager.default.createFile(atPath: environment.url("~/.local/bin/cockpit").path(percentEncoded: false), contents: Data())
+        #expect(target.isInstalled(in: context))
+    }
 }
 
 struct EngineTests {

@@ -1,6 +1,6 @@
 # Opaline
 
-> Native macOS app that applies one color theme to the terminal (Ghostty, cmux), Zed, Claude Code, the Zen browser,
+> Native macOS app that applies one color theme to the terminal (Ghostty, cmux), Zed, Claude Code, Cockpit, the Zen browser,
 > GitHub in Zen and the wallpaper. A theme is one JSON file of color roles; only a name and three colors are required.
 
 ## Making a theme

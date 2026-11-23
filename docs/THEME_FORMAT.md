@@ -155,6 +155,7 @@ What follows the Mac's light/dark switch when a theme has both:
 | Wallpaper | a dynamic HEIC with both images, switched by macOS |
 | Zen | window scheme follows the Mac; the space gradient is the primary one, `userChrome.css` swaps in the other under `prefers-color-scheme` |
 | Claude Code | one base per custom theme: the Opaline app rewrites it on each switch while it runs (Claude Code reloads it live) |
+| Cockpit | both palettes in `theme.json` (`cssVars.light`, `cssVars.dark`); Cockpit switches itself |
 | GitHub | the dark colors only |
 
 In the app, **Edit › Add Light Version** (or Dark) creates a starting point from the current colors, and the preview has

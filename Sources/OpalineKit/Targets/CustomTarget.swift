@@ -98,5 +98,6 @@ public struct CustomTargetStore: Sendable {
 public enum BuiltInTargets {
     public static let all: [any ThemeTarget] = [
         GhosttyTarget(), CmuxTarget(), ClaudeCodeTarget(), ZedTarget(), ZenTarget(), GitHubTarget(), WallpaperTarget(),
+        CockpitTarget(),
     ]
 }
